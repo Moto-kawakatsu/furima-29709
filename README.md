@@ -38,14 +38,11 @@ Things you may want to cover:
 | first_name_kanji | string | null: false |
 | family_name_kana | string | null: false |
 | first_name_kana  | string | null: false |
-| birth_year       | integer| null: false |
-| birth_month      | integer| null: false |
-| birth_day        | integer| null: false |
+| birthday         | integer| null: false |
 
 ### Association
 
-- has_many :credit_cards
-- has_many :purchase
+- has_many :purchases
 - has_many :items
 
 ## items テーブル
@@ -53,13 +50,12 @@ Things you may want to cover:
 | Column           | Type       | Options     |
 | ---------------- | ---------- | ----------- |
 | users            | references | null: false |
-| image            | string     | null: false |
 | name             | string     | null: false |
 | description      | string     | null: false |
-| category         | string     | null: false |
-| condition        | string     | null: false |
+| category         | integer    | null: false |
+| condition        | integer    | null: false |
 | shipping_fee     | integer    | null: false |
-| ship_from_address| string     | null: false |
+| ship_from_address| integer    | null: false |
 | shipping_days    | integer    | null: false |
 | price            | integer    | null: false |
 
@@ -67,7 +63,7 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one :purchase
 
 
@@ -82,9 +78,8 @@ Things you may want to cover:
 ### Association
 
 - has_one :delivery_address 
-- has_one :credit_cards
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 
 ## delivery_address テーブル
@@ -93,28 +88,13 @@ Things you may want to cover:
 | ---------------- | ---------- | ----------- |
 | user             | references | null: false |
 | postal_code      | integer    | null: false |
-| prefecture       | string     | null: false |
+| prefecture       | integer    | null: false |
 | city             | string     | null: false |
 | detail_address   | string     | null: false |
 | building_name    | string     |             |
-| phone_number     | integer    | null: false |
+| phone_number     | string    | null: false |
 
 
 ### Association
 
-- belongs_to :purchase
-
-
-## credit_cards テーブル
-
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| user            | references | null: false, foreign_key: true |
-| card_number     | integer    | null: false, foreign_key: true |
-| expiration_date | integer    | null: false, foreign_key: true |
-| CVC             | integer    | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :users
 - belongs_to :purchase
