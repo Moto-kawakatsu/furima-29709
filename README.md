@@ -38,7 +38,7 @@ Things you may want to cover:
 | first_name_kanji | string | null: false |
 | family_name_kana | string | null: false |
 | first_name_kana  | string | null: false |
-| birthday         | data   | null: false |
+| birthday         | date   | null: false |
 
 ### Association
 
@@ -49,7 +49,7 @@ Things you may want to cover:
 
 | Column               | Type       | Options     |
 | -------------------- | ---------- | ----------- |
-| users                | references | null: false |
+| user                 | references | null: false |
 | name                 | string     | null: false |
 | description          | string     | null: false |
 | category_id          | integer    | null: false |
