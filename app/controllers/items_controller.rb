@@ -1,4 +1,10 @@
 class ItemsController < ApplicationController
+    
+    # itemテーブルの全てのレコードを@itemsに代入した
+    def index
+        @items = Item.all
+    end
+    
     def new
         @item = Item.new
     end
@@ -30,7 +36,7 @@ class ItemsController < ApplicationController
 
 
 
-    
+
     end
 
 
