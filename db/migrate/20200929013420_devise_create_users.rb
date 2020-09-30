@@ -6,7 +6,13 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
-
+      t.string :nickname, null: false
+      t.string :family_name_kanji, null: false
+      t.string :first_name_kanji, null: false
+      t.string :family_name_kana, null: false
+      t.string :first_name_kana, null: false
+      t.date :birthday, null: false
+  
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
@@ -42,3 +48,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
     # add_index :users, :unlock_token,         unique: true
   end
 end
+
+# rollbackでdown devise以外のマイグレファイルを消す。
+# READMEの通りにt.~~ を記述
+#  rails db:migrate もしエラーが出たら、rails db:migrate:reset
