@@ -8,11 +8,12 @@ class User < ApplicationRecord
          has_many :purchases
 
 
-        VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])[a-z\d]{1,50}+\z/
+        VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[\w-]{6,128}+\z/i
+      
         kanji = /\A[ぁ-んァ-ン一-龥]/
         kana = /\A[ァ-ヶー－]+\z/
-        kanji_message = "は全角で入力してください。"
-        kana_message = "は全角カタカナで入力して下さい。"
+        kanji_message = "は全角(漢字・ひらがな・カタカナ)で入力してください。"
+        kana_message = "は全角(カタカナ)で入力して下さい。"
 
        with_options presence: true do
           validates :password, length: {minimum: 6 }, format: { with: VALID_PASSWORD_REGEX}
