@@ -6,8 +6,8 @@ class User < ApplicationRecord
          
          has_many :items
          has_many :purchases
-         VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])[a-z\d]{8,32}+\z/
-         validates :password, presence: true, length: {minimum: 6 }, format: { with: VALID_PASSWORD_REGEX}
+        VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])[a-z\d]{1,50}+\z/
+        validates :password, presence: true, length: {minimum: 6 }, format: { with: VALID_PASSWORD_REGEX}
          validates :email, presence: true
          validates :nickname, presence: true
          validates :birthday, presence: true
@@ -15,6 +15,5 @@ class User < ApplicationRecord
          validates :first_name_kanji, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "は全角で入力してください。"}
          validates :family_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: "は全角カタカナで入力して下さい。"}
          validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: "は全角カタカナで入力して下さい。"}
-
 
 end
