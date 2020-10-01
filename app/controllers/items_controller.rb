@@ -12,11 +12,18 @@ class ItemsController < ApplicationController
     
         def create
             @item = Item.new(item_params)
-    
+            if @items.save
+                redirect_to root_path
+            else
+                redirect_to action 'new'
+            end
         end
     
-    
-    
+        def show 
+            @items = Items.includes(:item_images).order('created_at DESC').find(params[:id])
+        end
+        
+        
         private
     
         def item_params
@@ -25,15 +32,14 @@ class ItemsController < ApplicationController
                 :name,
                 :description,
                 :category_id,
-                :condition_id
-                :shipping_fee_id
-                :ship_from_address_id
-                :shipping_days_id
+                :condition_id,
+                :shipping_fee_id,
+                :ship_from_address_id,
+                :shipping_days_id,
                 :price
             ).merge(
                 user_id: current_user.id,
             )
-        end
         end    
     end
 end
