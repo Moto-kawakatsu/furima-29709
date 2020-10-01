@@ -36,10 +36,9 @@ class ItemsController < ApplicationController
                 :shipping_fee_id,
                 :ship_from_address_id,
                 :shipping_days_id,
-                :price
-            ).merge(
-                user_id: current_user.id,
-            )
+                :price,
+                :image
+            ).merge(user_id: current_user.id)
         end    
     end
 end
