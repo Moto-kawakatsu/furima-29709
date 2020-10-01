@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
     class ItemsController < ApplicationController
-    
-        # itemテーブルの全てのレコードを@itemsに代入した
+        before_action :authenticate_user!, except: [:index, :show]
+      
         def index
             @items = Item.all
         end
