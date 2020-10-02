@@ -1,9 +1,8 @@
 class ItemsController < ApplicationController
-    class ItemsController < ApplicationController
         before_action :authenticate_user!, except: [:index, :show]
       
         def index
-            @items = Item.all
+            @items = Item.order("created_at DESC")
         end
         
         def new
@@ -15,14 +14,13 @@ class ItemsController < ApplicationController
             if @items.save
                 redirect_to root_path
             else
-                redirect_to action 'new'
+                render :new
             end
         end
     
-        def show 
-            @items = Items.includes(:item_images).order('created_at DESC').find(params[:id])
-        end
-        
+        # def show 
+        #     @items = Items.includes(:item_images).order('created_at DESC').find(params[:id])
+        # end
         
         private
     
@@ -41,4 +39,3 @@ class ItemsController < ApplicationController
             ).merge(user_id: current_user.id)
         end    
     end
-end
