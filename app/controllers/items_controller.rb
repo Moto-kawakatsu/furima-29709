@@ -18,20 +18,6 @@ class ItemsController < ApplicationController
             end
         end
     
-# JavaScriptのコード記述
-
-        def checked
-            # item = Item.find(params[:id])
-            # if post.checked
-            #     post.update(checked: false)
-            # else
-            #     post.update(checked: true)
-            # end
-
-            # render json: { item: item }
-        end
-
-# JavaScriptのコード記述
 
         # def show 
         #     @items = Items.includes(:item_images).order('created_at DESC').find(params[:id])
