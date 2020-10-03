@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :items
     resources :users
     post 'posts', to: 'posts#create'
+    get 'posts' , to: 'posts#checked'
 
     get    'login'   => 'sessions#new'
     post   'login'   => 'sessions#create'
