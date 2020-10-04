@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe User do
+RSpec.describe Item do
     before do
       @item = FactoryBot.build(:item)
       @item.image = fixture_file_upload('app/assets/images/camera.png')
@@ -102,6 +102,36 @@ RSpec.describe User do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
+      it "category_idが１のとき登録できない" do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
+      it "condition_idが１のとき登録できない" do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+      end
+
+      it "shipping_fee_idが１のとき登録できない" do
+        @item.shipping_fee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
+      end
+
+      it "ship_from_address_idが１のとき登録できない" do
+        @item.ship_from_address_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Ship from address must be other than 1")
+      end
+
+      it "shipping_days_idが１のとき登録できない" do
+        @item.shipping_days_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping days must be other than 1")
+      end
+
       it "priceが半角数字ではないとき登録できない" do
         @item.price = "２０００"
         @item.valid?
@@ -119,6 +149,6 @@ RSpec.describe User do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end
-    end
+     end
    end
 end
