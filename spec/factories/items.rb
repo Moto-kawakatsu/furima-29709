@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    # user_id              {1}
     image                {}
     name                 {Faker::Name.name}
     description          {"G-Shockの時計です"}
