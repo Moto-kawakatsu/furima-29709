@@ -120,8 +120,8 @@ RSpec.describe Item do
         expect(@item.errors.full_messages).to include("Shipping fee must be other than 1")
       end
 
-      it "ship_from_address_idが１のとき登録できない" do
-        @item.ship_from_address_id = 1
+      it "ship_from_address_idが0のとき登録できない" do
+        @item.ship_from_address_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include("Ship from address must be other than 1")
       end
