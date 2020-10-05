@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "items#index" 
   resources :items
   resources :users
+  resources :orders
   post 'posts', to: 'posts#create'
   get 'posts' , to: 'posts#checked'
 
