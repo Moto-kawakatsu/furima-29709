@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   
   devise_for :users
   root to: "items#index" 
-  resources :items
   resources :users
-  resources :orders
+  resources :items do
+    resources :orders
   post 'posts', to: 'posts#create'
   get 'posts' , to: 'posts#checked'
 
@@ -13,4 +13,4 @@ Rails.application.routes.draw do
 
     # get 'items/new' => 'items#new'
 end
-
+end
