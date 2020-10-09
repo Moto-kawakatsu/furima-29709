@@ -10,9 +10,15 @@ RSpec.describe Buy do
     describe '商品購入機能' do
     context '商品購入がうまくいくとき' do
   
-        it "postal_code, prefecture, city, detail_address, phone_number, user_id, item_id, tokenが存在するとき購入できる" do
+        it "postal_code, prefecture, city, detail_address, building_name, phone_number, user_id, item_id, tokenが存在するとき購入できる" do
           expect(@buy).to be_valid
         end
+
+        it "building_name以外の全てが存在するとき購入できる" do
+          @buy.building_name = ""
+          expect(@buy).to be_valid
+        end
+
   end
   
     context '商品購入がうまくいかないとき' do
@@ -53,6 +59,12 @@ RSpec.describe Buy do
       expect(@buy.errors.full_messages).to include("Phone number can't be blank")
     end
   
+    it "prefecture_idが1のとき" do
+      @buy.prefecture_id = 1
+      @buy.valid?
+      expect(@buy.errors.full_messages).to include("Prefecture must be other than 1")
+    end
+
     it "tokenが空のとき" do
       @buy.token = ""
       @buy.valid?
@@ -70,6 +82,7 @@ RSpec.describe Buy do
       @buy.valid?
       expect(@buy.errors.full_messages).to include("Phone number is invalid")
     end
+    
     
   end
   end
