@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-before_action :set_item, only: [:index, :create, :pay_item]
+before_action :set_item, only: [:index, :create]
 
     def index
          @order = Buy.new
@@ -28,6 +28,8 @@ before_action :set_item, only: [:index, :create, :pay_item]
     
     def set_item
         @item = Item.find(params[:item_id])
+
+    end
 
     def order_params
         params.require(:buy).permit(
