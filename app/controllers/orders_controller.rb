@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
+before_action :set_item, only: [:index, :create, :pay_item]
+
     def index
-         @item = Item.find(params[:item_id])
          @order = Buy.new
     end
 
@@ -9,7 +10,6 @@ class OrdersController < ApplicationController
     end
 
     def create
-        @item = Item.find(params[:item_id])
         @order = Buy.new(order_params)
         if @order.valid?
             pay_item
@@ -26,6 +26,9 @@ class OrdersController < ApplicationController
 
     private
     
+    def set_item
+        @item = Item.find(params[:item_id])
+
     def order_params
         params.require(:buy).permit(
             :postal_code, 
@@ -38,7 +41,6 @@ class OrdersController < ApplicationController
     end
 
     def pay_item
-        @item = Item.find(params[:item_id])
         Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # PAY.JPテスト秘密鍵
         Payjp::Charge.create(
           amount: @item[:price],  # 商品の値段
