@@ -14,8 +14,8 @@ class Buy
   end
 
   def save
-    order = Order.create!(user_id: user_id, item_id: item_id)
+    order = Order.create(user_id: user_id, item_id: item_id)
     # 住所の情報を保存
-    DeliveryAddress.create!(postal_code: postal_code, prefecture_id: prefecture_id, city: city, detail_address: detail_address, building_name: building_name, phone_number: phone_number, order_id: order.id)
+    DeliveryAddress.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, detail_address: detail_address, building_name: building_name, phone_number: phone_number, order_id: order.id)
   end
 end
