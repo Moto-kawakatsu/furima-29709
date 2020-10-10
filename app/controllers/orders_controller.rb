@@ -3,10 +3,9 @@ before_action :set_item, only: [:index, :create]
 before_action :authenticate_user!, except: [:show]
     def index
          @order = Buy.new
-         item = Item.find(params[:item_id])
-         if item.order.present?
+         if @item.order.present?
              redirect_to root_path 
-         elsif item.user == current_user
+         elsif @item.user == current_user
             redirect_to root_path
          end
     end
