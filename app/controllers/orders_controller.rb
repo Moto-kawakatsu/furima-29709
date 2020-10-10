@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 before_action :set_item, only: [:index, :create]
-before_action :authenticate_user!, except: [:index, :show]
+before_action :authenticate_user!, except: [:show]
     def index
          @order = Buy.new
          item = Item.find(params[:item_id])
@@ -8,6 +8,8 @@ before_action :authenticate_user!, except: [:index, :show]
              redirect_to root_path 
          elsif item.user == current_user
             redirect_to root_path
+        #  elsif user_signed_in?
+        #     redirect_to root_path
          end
     end
 
