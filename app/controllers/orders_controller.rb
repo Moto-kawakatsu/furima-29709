@@ -1,12 +1,14 @@
 class OrdersController < ApplicationController
 before_action :set_item, only: [:index, :create]
-
+before_action :authenticate_user!, except: [:index, :show]
     def index
          @order = Buy.new
-    end
-
-    def new
-        @order = Buy.new
+         item = Item.find(params[:item_id])
+         if item.order.present?
+             redirect_to root_path 
+         elsif item.user == current_user
+            redirect_to root_path
+         end
     end
 
     def create
@@ -20,9 +22,6 @@ before_action :set_item, only: [:index, :create]
         end
     
     end
-
-
-
 
     private
     
@@ -50,4 +49,5 @@ before_action :set_item, only: [:index, :create]
           currency:'jpy'                 # 通貨の種類(日本円)
         )
       end
+
 end
