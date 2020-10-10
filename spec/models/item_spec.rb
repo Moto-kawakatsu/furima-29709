@@ -10,42 +10,7 @@ RSpec.describe Item do
       it "image, name, description, category_id, condition_id, shipping_fee_id, ship_from_address_id, shipping_days_id, priceが存在すれば登録できる" do
         expect(@item).to be_valid
       end
-      
-      # it "category_idが１以外のとき" do
-      #   @item.category_id = 2
-      #   expect(@item).to be_valid
-      # end
-
-      # it "condition_idが１以外のとき" do
-      #   @item.condition_id = 2
-      #   expect(@item).to be_valid
-      # end
-
-      # it "shipping_fee_idが１以外のとき" do
-      #   @item.shipping_fee_id = 2
-      #   expect(@item).to be_valid
-      # end
-
-      # it "ship_from_address_idが１以外のとき" do
-      #   @item.ship_from_address_id = 2
-      #   expect(@item).to be_valid
-      # end
-
-      # it "shipping_days_idが１以外のとき" do
-      #   @item.shipping_days_id = 2
-      #   expect(@item).to be_valid
-      # end
-
-      # it "priceが300~9,999,999の間であるとき" do
-      #   @item.price = 5000
-      #   expect(@item).to be_valid
-      # end
-
-      # it "priceが半角数字のとき" do
-      #   @item.price = 1000
-      #   expect(@item).to be_valid
-      # end
-    end
+end
 
     context '商品出品登録がうまくいかないとき' do
       it "imageが空のとき登録できない" do
@@ -149,6 +114,6 @@ RSpec.describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end
-     end
-   end
+    end
+  end
 end
