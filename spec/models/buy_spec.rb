@@ -83,6 +83,12 @@ RSpec.describe Buy do
       expect(@buy.errors.full_messages).to include("Phone number is invalid")
     end
     
+    it "phone_numberにハイフンがあるとき" do
+      @buy.phone_number = "090-1111-1234"
+      @buy.valid?
+      expect(@buy.errors.full_messages).to include("Phone number is invalid")
+    end
+
     
   end
   end
