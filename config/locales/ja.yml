@@ -20,12 +20,18 @@ ja:
        ship_from_address_id: 配送元住所
        shipping_days_id: 商品到着予定
        price: 値段
-         
-     delivery_address:
-        postal_code: 郵便番号
-        prefecture_id: 都道府県
-        city: 市
-        detail_address: 番地
-        building_name: 建物名
-        phone_number: 電話番号
-        token: 
+
+ja:       
+ activemodel:
+   attributes:
+     buy:
+       postal_code: 郵便番号
+       prefecture_id: 都道府県
+       city: 市
+       detail_address: 番地
+       building_name: 建物名
+       phone_number: 電話番号
+       token: クレジットカード情報
+
+ errors:
+       messages:
