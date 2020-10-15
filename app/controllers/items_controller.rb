@@ -7,6 +7,11 @@ class ItemsController < ApplicationController
             @items = Item.all.order("created_at DESC")
         end
         
+        def show
+           @comment = Comment.new
+           @comments = @item.comments.includes(:user)
+        end
+
         def search
             @items = Item.all.order("created_at DESC")
             set_item_column

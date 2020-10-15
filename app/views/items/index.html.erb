@@ -4,7 +4,7 @@
   <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
   <div class='title-contents'>
     <h2 class='service-title'>
-      人生を変えるフリマアプリ
+      サルでも使えるフリマアプリ
     </h2>
     <p class='service-explain'>
       FURIMAはだれでもかんたんに出品・購入できる
@@ -125,7 +125,7 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <div class="links">
       <%= link_to '新規投稿商品', "#", class: "subtitle" %>
-      <%= link_to '商品検索', item_items_search_path(:item_id), class: "subtitle" %>
+      <%= link_to '商品検索', items_search_path(:item_id), class: "subtitle" %>
       <%= link_to 'セール対象商品', "#", class: "subtitle" %>
     </div>
     <ul class='item-lists'>
@@ -194,9 +194,9 @@
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
   <% if user_signed_in? %>
-   <%= link_to  image_tag('camera.png' , size: '185x50' ,class: "purchase-btn-icon"), new_item_path %>
+   <%= link_to  image_tag('moneky.png' , size: '185x50' ,class: "purchase-btn-icon"), new_item_path %>
   <% else %>
-   <%= link_to  image_tag('camera.png' , size: '185x50' ,class: "purchase-btn-icon"),new_user_session_path %>
+   <%= link_to  image_tag('monkey.png' , size: '185x50' ,class: "purchase-btn-icon"),new_user_session_path %>
    <% end %>
 </div>
 <%= render "shared/footer" %>

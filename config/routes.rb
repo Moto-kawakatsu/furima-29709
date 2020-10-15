@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users
   resources :items do
     resources :orders 
+    resources :comments
+  end
   post 'posts', to: 'posts#create'
   get 'posts' , to: 'posts#checked'
 
@@ -13,5 +15,4 @@ Rails.application.routes.draw do
 
   get 'items/search'
   get 'items/result'
-end
 end

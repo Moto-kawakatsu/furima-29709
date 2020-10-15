@@ -4,7 +4,7 @@ class User < ApplicationRecord
          
          has_many :items
          has_many :orders
-
+         has_many :comments
 
         VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[\w-]{6,128}+\z/i
       
