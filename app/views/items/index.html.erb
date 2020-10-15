@@ -123,9 +123,11 @@
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
- 
-    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
-  
+    <div class="links">
+      <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+      <%= link_to '商品検索', item_items_search_path(:item_id), class: "subtitle" %>
+      <%= link_to 'セール対象商品', "#", class: "subtitle" %>
+    </div>
     <ul class='item-lists'>
     <% if @items.present? %>
     <% @items.each do |item| %>
@@ -142,8 +144,8 @@
           </div>
           <% end %>
           <%# //商品が売れていればsold outを表示しましょう %>
-
         </div>
+
         <div class='item-info'>
           <h3 class='item-name'>
             <%= item.name %>

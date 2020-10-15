@@ -1,11 +1,21 @@
 class ItemsController < ApplicationController
         before_action :authenticate_user!, except: [:index, :show]
         before_action :set_item, only: [:show, :edit, :update, :destroy]
-       
+        before_action :search_item, only: [:search, :result]
+
         def index
             @items = Item.all.order("created_at DESC")
         end
         
+        def search
+            @items = Item.all.order("created_at DESC")
+            set_item_column
+        end
+
+        def result
+            @results = @p.result.order("created_at DESC")
+        end
+
         def new
             @item = Item.new
         end
@@ -54,5 +64,19 @@ class ItemsController < ApplicationController
 
         def set_item
             @item = Item.find(params[:id])
+        end
+
+        def search_item
+            @p = Item.ransack(params[:q])
+        end
+
+        def set_item_column
+            @item_name = Item.select("name").distinct #重複なくnameカラムのデータを取り出す
+            selected_items = Item.select("category_id").distinct
+            @item_category = []
+            selected_items.each do |item|
+                @item_category << Category.find(item.category_id)
+            end
+            @item_price = Item.select("price").distinct
         end
     end
