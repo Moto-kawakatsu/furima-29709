@@ -8,6 +8,7 @@ belongs_to_active_hash :ship_from_address
 belongs_to_active_hash :shipping_days
 belongs_to :user
 has_one :order
+has_many :comments
 has_one_attached :image
 
 
