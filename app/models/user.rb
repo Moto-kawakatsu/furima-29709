@@ -5,6 +5,11 @@ class User < ApplicationRecord
          has_many :items
          has_many :orders
          has_many :comments
+         has_many :likes, dependent: :destroy
+
+         def already_liked?(item)
+            self.likes.exists?(item_id: item.id)
+         end
 
         VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[\w-]{6,128}+\z/i
       
