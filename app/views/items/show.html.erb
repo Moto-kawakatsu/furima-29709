@@ -76,21 +76,40 @@
   </div>
 
 <%# コメント欄 %>
-    <div class="comment-box">
-    <% if current_user %>
-    <%= form_with(model: [@item, @comment], local: true) do |form| %>
-      <%= form.textarea :text, placeholder: "コメントする" rows: "2", class: "comment-text">
+<div class="comment">
+      <div class="comment-box">
+      <%= form_with(model: [@item, @comment], local: true) do |form| %>
+        <%= form.text_area :text, placeholder: "コメントする", class: "comment-text" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <%= form.submit "コメントする" %>
-      </button>
-    </form>
+      <%= form.submit "コメントする", class: "comment-btn" %>
+<% end %>
   </div>
+
+  <div class="comment-box2">
+      <h4 class="comment-list">＜コメント一覧＞</h4>
+      <% if @comments %>
+        <% @comments.each do |comment| %>
+        <div class="comment-content">
+          <p>
+            <strong><%= link_to comment.user.nickname, "#", class: "comment-nickname" %></strong>
+            <%= comment.text %>
+          </p>
+          <% if user_signed_in? && current_user.id == comment.user_id %>
+          <p>
+            <%= link_to '　削除', item_comment_path(@item.id, comment.id), method: :delete, class: "delete-button" %>
+          </p>
+          <% end %>
+          </div>
+          
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
 
   <div class="links">
     <a href="#" class="change-item-btn">
@@ -102,9 +121,6 @@
   </div>
   <a href="#" class='another-item'><%= @item.category.name %>をもっと見る</a>
 </div>
-
+</div>
 <%= render "shared/footer" %>
-
-
-
 

@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
         
         def show
            @comment = Comment.new
-           @comments = @item.comments.includes(:user)
+           @comments = @item.comments.includes(:user).limit(5).order("created_at DESC")
         end
 
         def search
