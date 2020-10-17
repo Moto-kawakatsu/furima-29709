@@ -133,8 +133,8 @@
     <% @items.each do |item| %>
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <li class='list'>
+      <div class='item-img-content'>
         <%= link_to item_path(item.id) do %>
-        <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
@@ -152,10 +152,19 @@
           </h3>
           <div class='item-price'>
             <span><%= item.price %>円<br>(税込み)</span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
-            </div>
+          <div class='heart-btn'>
+          <% if user_signed_in? && current_user.already_liked?(item) %>
+            <%= link_to item_likes_path(item), method: :delete do %>
+              <i class="heart-color">♥</i>
+            <% end %>
+            <% else %>
+            <%= link_to item_likes_path(item), method: :post do %>
+              <i class="heart-color1">♥</i>
+            <% end %>
+          <% end %>
+          <%= item.likes.count %>
+          </div>
+          
           </div>
         </div>
         <% end %>
