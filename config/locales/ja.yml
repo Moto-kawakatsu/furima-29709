@@ -9,7 +9,8 @@ ja:
        family_name_kana: 姓(ふりがな)
        first_name_kana: 名(ふりがな)
        birthday: 誕生日
-
+   
+   attributes:
      item:
        image: 画像
        name: 商品名
@@ -21,7 +22,7 @@ ja:
        shipping_days_id: 商品到着予定
        price: 値段
 
-ja:       
+     
  activemodel:
    attributes:
      buy:
@@ -33,5 +34,6 @@ ja:
        phone_number: 電話番号
        token: クレジットカード情報
 
- errors:
+errors:
        messages:
+

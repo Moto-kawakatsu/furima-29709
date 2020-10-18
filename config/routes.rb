@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :orders 
     resources :comments
+    resource :likes, only: [:create, :destroy]
 
   end
 
@@ -19,5 +20,7 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
 
+  # get 'favorites/index'
+  # post 'favorites', to: 'favorites#create'
 
 end
