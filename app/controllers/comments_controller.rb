@@ -10,8 +10,14 @@ class CommentsController < ApplicationController
 
     def create
         @item = Item.find(params[:item_id])
-        comment = Comment.create(comment_params)
-        redirect_to item_path(@item)
+        @comments = @item.comments.includes(:user).limit(5).order("created_at DESC")
+        @comment = Comment.new
+        @comment = Comment.new(comment_params)
+        if @comment.save
+           redirect_to item_path(@item)
+        else
+           render template: "items/show"
+        end
     end
 
     def destroy
