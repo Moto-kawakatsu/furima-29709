@@ -89,15 +89,35 @@
 
 .comment-nickname {
   margin: 0 4vh;
+  color: rgba(0, 0, 0, 0.505);
+}
+
+.comment-texts {
+  font-size:1.5vh;
+  margin-top: 5px;
+
 }
 
 .delete-button {
-  color: red;
+  color: rgba(255, 0, 0, 0.32);
   font-size: 1.5vh;
-  border: solid 1px #00000014;
+  /* border: solid 1px #00000014; */
   padding: 1vh;
   padding-right: 2vh;
   margin-left: 3vh;
-  background-color: rgb(255, 233, 233);
+  /* background-color: rgba(255, 233, 233, 0.63); */
 
+}
+
+.comment-time {
+  font-size: 4px;
+  margin-left: 10px;
+  margin-top: 5px;
+  color: rgba(0, 128, 255, 0.63);
+}
+
+
+.more-comments {
+  color:red;
+  font-size: 100px;
 }
