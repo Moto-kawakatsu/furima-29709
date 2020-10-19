@@ -8,8 +8,8 @@
     <div class='item-img-content'>
       <%= image_tag @item.image, class:"item-box-img" %>
       <% if @item.order.present? %>
-      <div class='sold-out'>
-        <span>Sold Out!!</span>
+      <div class='sold-out2'>
+        <span>Sold Out</span>
       </div> 
       <% end %>
     </div>
@@ -24,7 +24,7 @@
     </div>
 
     <% if user_signed_in? && current_user.id == @item.user_id%>
-    <%= link_to '商品の編集', edit_item_path, method: :get, class: "item-red-btn" %>
+    <%= link_to '商品の編集', edit_item_path(@item), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
     <% elsif @item.order.present? %>
@@ -69,10 +69,14 @@
             <%= link_to item_likes_path(@item), method: :delete do %>
             <i class="heart-color">♥</i>
             <% end %>
+      <% elsif current_user.id == @item.user_id%>
+            <%# <%= link_to item_likes_path(@item), method: :post do %>
+            <i class="heart-color1">♥</i>
+            <%# <% end %>
       <% else %>
             <%= link_to item_likes_path(@item), method: :post do %>
-            <i class="heart-color1">♥</i>
-            <% end %>
+             <i class="heart-color1">♥</i>
+             <% end %>
       <% end %>
       <%= @item.likes.count%>
       </div>
@@ -110,19 +114,24 @@
           <p class="comment-texts">
             <%= comment.text%>
           </p>
-          <% if user_signed_in? && current_user.id == comment.user_id %>
-          <p>
-            <%= link_to '　削除', item_comment_path(@item.id, comment.id), method: :delete, class: "delete-button" %>
-          </p>
           <p class="comment-time">
             <%= comment.created_at.to_s(:datetime_jp) %>
           </p>
+           <% if user_signed_in? && current_user.id == comment.user_id %>
+          <p>
+            <%= link_to item_comment_path(@item.id, comment.id), method: :delete, class: "delete-button" do %>
+            <i class="fas fa-trash"></i>
+            <% end %>
+          </p>
           <% end %>
           </div>
-          
         <% end %>
+            <% if @item.comments.length !=0 %>
+            <br>
+            <%= link_to '他のコメントを見る', item_comments_path(@item), class: "more-comments"%>
       <% end %>
-          <%= link_to 'もっとみる', item_comments_path(@item) %>
+      <% end %>
+
     </div>
 
   </div>
