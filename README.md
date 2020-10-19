@@ -59,16 +59,13 @@ Things you may want to cover:
 | shipping_days_id     | integer    | null: false |
 | price                | integer    | null: false |
 
-
-
 ### Association
 
 - belongs_to :user
 - has_one :order
 
 
-
-## order テーブル
+## orders テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
@@ -82,7 +79,7 @@ Things you may want to cover:
 - belongs_to :item
 
 
-## delivery_address テーブル
+## delivery_addresses テーブル
 
 | Column           | Type       | Options     |
 | ---------------- | ---------- | ----------- |
@@ -98,3 +95,32 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :order
+
+
+## likes テーブル
+
+| Column           | Type       | Options     |
+| ---------------- | ---------- | ----------- |
+| item_id          | references | null: false |
+| user_id          | references | null: false |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+
+
+## comments テーブル
+
+| Column           | Type       | Options     |
+| ---------------- | ---------- | ----------- |
+| item_id          | references | null: false |
+| user_id          | references | null: false |
+| text             | string     | null: false |
+
+
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
