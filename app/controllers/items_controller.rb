@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
         before_action :search_item, only: [:search, :result]
 
         def index
-            @items = Item.all.order("created_at DESC")
+            @items = Item.all.order("created_at DESC").limit(8)
         end
         
         def show

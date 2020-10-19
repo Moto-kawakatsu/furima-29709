@@ -1,42 +1,56 @@
 <%# <%= render "shared/header" %>
-
-  <% if @results.length !=0 %>
-  <div class ="Q">
-  <h1 class="q">
-    こちらの商品をお探しでしょうか？
-  </h1>
-<%= link_to 'はい', "#" ,class: "response" %>
-<%= link_to 'いいえ', items_search_path, class: "response" %>
-</div>
 <div class='item-contents'>
- <ul class='item-lists'>
+ <% if @results.length == 0 %>
+   該当する商品はありません
+   <% else %>
+  <div class ="Q">
+    <h1 class="q">こちらの商品をお探しでしょうか？</h1>
+    <div class="response">
+      <%= link_to 'YES　', "#"%>
+      <%= link_to '　NO', items_search_path%>
+    </div>
+  </div>
+   <ul class='item-lists2'>
    <% @results.each do |result| %>
     <td>
     <br>
-    <li class='list'>
-    <% unless result.order.present? %>
+    <% if result.order.blank? %>
+    <li class='list items'>
     <div class="item-img-content">
       <%= link_to item_path(result.id) do %>
-      <%= image_tag result.image, class: "item-img" %>
+      <%= image_tag result.image, class: "item-img2" %>
       <% end %>
     </div>
 
-    <div class='item-info'>
+  <div class='item-info'>
      <h3 class='item-name'>
          <%= result.name %>
      </h3>
      <div class='item-price'>
          <span><%= result.price %>円<br>(税込み)</span>
+           <div class='heart-btn'>
+            <% if user_signed_in? && current_user.already_liked?(result) %>
+            <%= link_to item_likes_path(result), method: :delete do %>
+              <i class="heart-color">♥</i>
+            <% end %>
+            <% elsif user_signed_in? && current_user.id == result.user_id%>
+              <i class="heart-color1">♥</i>
+            <% else %>
+              <%= link_to item_likes_path(result), method: :post do %>
+               <i class="heart-color1">♥</i>
+               <% end %>
+            <% end %>
+            <%= result.likes.count %>
+           </div>
      </div>        
-    </div>
+  </div>
+    <% end %>
     </li>
-    <% else %>
-       該当する商品はありません
-    <% end %>  
 <% end %>
 <br>
 </ul>
 </div>
 <% end %>
+<br>
 <%= link_to 'トップページに戻る', root_path, class: "move-to-top" %>
 

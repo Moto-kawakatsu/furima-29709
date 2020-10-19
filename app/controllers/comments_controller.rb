@@ -1,11 +1,16 @@
 class CommentsController < ApplicationController
 
     def index
-        @comments = Comment.all
+        @item = Item.find(params[:item_id])
+        @comments = @item.comments.order("created_at DESC")
     end
 
     def new
         @comment = Comment.new
+    end
+
+    def show
+        @comments = @item.comments.includes(:user)
     end
 
     def create
