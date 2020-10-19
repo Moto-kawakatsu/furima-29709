@@ -18,7 +18,13 @@ class ItemsController < ApplicationController
         end
 
         def result
+            @result = []
             @results = @p.result.order("created_at DESC")
+            @results.each do |result|
+                if result.order == nil
+                    @result << result
+                end
+            end
         end
 
         def new
