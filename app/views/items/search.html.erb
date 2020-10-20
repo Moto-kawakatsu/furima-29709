@@ -20,8 +20,6 @@
   2500円以下
   <%= f.radio_button :price_lteq, '5000' %>
   5000円以下
-  <%= f.radio_button :price_gt, '5000' %>
-  5000円以上
   <br>
   <%= f.submit '検索' %>
   <% end %>
@@ -54,9 +52,7 @@
               <i class="heart-color">♥</i>
             <% end %>
           <% elsif user_signed_in? && current_user.id == item.user_id%>
-            <%# <%= link_to item_likes_path(item), method: :post do %> 
               <i class="heart-color1">♥</i>
-            <%# <% end %>
           <% else %>
               <%= link_to item_likes_path(item), method: :post do %>
                <i class="heart-color1">♥</i>
