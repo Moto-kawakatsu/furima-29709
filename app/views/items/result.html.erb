@@ -27,6 +27,20 @@
      </h3>
      <div class='item-price'>
          <span><%= result.price %>円<br>(税込み)</span>
+           <div class='heart-btn'>
+            <% if user_signed_in? && current_user.already_liked?(result) %>
+            <%= link_to item_likes_path(result), method: :delete do %>
+              <i class="heart-color4">♥</i>
+            <% end %>
+            <% elsif user_signed_in? && current_user.id == result.user_id%>
+              <i class="heart-color4">♥</i>
+            <% else %>
+              <%= link_to item_likes_path(result), method: :post do %>
+               <i class="heart-color3">♥</i>
+               <% end %>
+            <% end %>
+            <%= result.likes.count %>
+           </div>
      </div>        
     </div>
     </li>

@@ -155,12 +155,14 @@
           <div class='heart-btn'>
           <% if user_signed_in? && current_user.already_liked?(item) %>
             <%= link_to item_likes_path(item), method: :delete do %>
-              <i class="heart-color">♥</i>
+              <i class="heart-color4">♥</i>
             <% end %>
-            <% else %>
-            <%= link_to item_likes_path(item), method: :post do %>
-              <i class="heart-color1">♥</i>
-            <% end %>
+          <% elsif user_signed_in? && current_user.id == item.user_id%>
+              <i class="heart-color3">♥</i>
+          <% else %>
+              <%= link_to item_likes_path(item), method: :post do %>
+               <i class="heart-color3">♥</i>
+              <% end %>
           <% end %>
           <%= item.likes.count %>
           </div>
