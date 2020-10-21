@@ -1,5 +1,5 @@
 <h1 class="image-to-top">
-   <%= link_to image_tag("furima-logo-color.png", class:"furima-icon-search"), "root_path" %>
+   <%= link_to image_tag("furima-logo-color.png", class:"furima-icon-search"), root_path %>
 </h1>
 <h1 class="item-search">
   商品検索
@@ -20,23 +20,22 @@
   2500円以下
   <%= f.radio_button :price_lteq, '5000' %>
   5000円以下
-   <%= f.radio_button :price_gteq, '5000' %>
-  5000円以上
   <br>
   <%= f.submit '検索' %>
   <% end %>
     <br>
   <%# 商品一覧 %>
 <div class='item-contents'>
- <ul class='item-lists'>
+ <ul class='item-lists2'>
   <% @items.each do |item| %>
   <td>
   <br>
-    <li class="list">
-    <% unless item.order.present? %>
+      <% if item.order.blank? %>
+    <li class="list items">
+
     <div class="item-img-content">
       <%= link_to item_path(item.id) do %>  
-      <%= image_tag item.image, class: "item-img" %>
+      <%= image_tag item.image, class: "item-img2" %>
       <% end %>
     </div>
 
@@ -46,10 +45,7 @@
        </h3>
          <div class="item-price">
            <span><%= item.price %>円<br>(税込み)</span>
-
          </div>
-
-         
           <div class='heart-btn'>
           <% if user_signed_in? && current_user.already_liked?(item) %>
             <%= link_to item_likes_path(item), method: :delete do %>
@@ -65,7 +61,6 @@
           <%= item.likes.count %>
           </div>
           </div>
-
      </div>
      </li>
     <%end%>

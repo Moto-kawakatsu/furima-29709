@@ -1,0 +1,28 @@
+  <div class="comment">
+  <div class="comment-box3">
+      <h4 class="comment-list">＜すべてのコメント＞</h4>
+      <% if @comments %>
+        <% @comments.each do |comment| %>
+        <div class="comment-content2">
+          <p>
+            <strong><%= link_to comment.user.nickname, "#", class: "comment-nickname2" %></strong>
+          </p>
+          <p class="comment-texts2">
+            <%= comment.text%>
+          </p>
+          <p class="comment-time">
+            <%= comment.created_at.to_s(:datetime_jp) %>
+          </p>
+            <% if user_signed_in? && current_user.id == comment.user_id %>
+          <p>
+            <%= link_to item_comment_path(@item.id, comment.id), method: :delete, class: "delete-button2" do%>
+             <i class="fas fa-trash"></i>
+            <% end %>
+          </p>
+          <% end %>
+          </div>
+        <% end %>
+      <% end %>
+      <%= link_to 'トップページに戻る', root_path, class: "move-to-top2"%>
+    </div>
+  </div>

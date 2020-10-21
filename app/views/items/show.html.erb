@@ -8,8 +8,8 @@
     <div class='item-img-content'>
       <%= image_tag @item.image, class:"item-box-img" %>
       <% if @item.order.present? %>
-      <div class='sold-out'>
-        <span>Sold Out!!</span>
+      <div class='sold-out2'>
+        <span>Sold Out</span>
       </div> 
       <% end %>
     </div>
@@ -24,7 +24,7 @@
     </div>
 
     <% if user_signed_in? && current_user.id == @item.user_id%>
-    <%= link_to '商品の編集', edit_item_path, method: :get, class: "item-red-btn" %>
+    <%= link_to '商品の編集', edit_item_path(@item), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
     <% elsif @item.order.present? %>
@@ -70,6 +70,7 @@
             <i class="heart-color"><span>お気に入り</span>♥</i>
             <% end %>
       <% elsif user_signed_in? && current_user.id == @item.user_id%>
+
             <i class="heart-color1"><span>お気に入り</span>♥</i>
       <% else %>
             <%= link_to item_likes_path(@item), method: :post do %>
@@ -92,6 +93,7 @@
 <div class="comment">
       <div class="comment-box">
       <%= form_with(model: [@item, @comment], local: true) do |form| %>
+      <%=render 'shared/error_messages', model: form.object %>
         <%= form.text_area :text, placeholder: "コメントする", class: "comment-text" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
@@ -99,7 +101,7 @@
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
       <%= form.submit "コメントする", class: "comment-btn" %>
-<% end %>
+     <% end %>
   </div>
 
   <div class="comment-box2">
@@ -109,18 +111,30 @@
         <div class="comment-content">
           <p>
             <strong><%= link_to comment.user.nickname, "#", class: "comment-nickname" %></strong>
-            <%= comment.text %>
           </p>
-          <% if user_signed_in? && current_user.id == comment.user_id %>
+          <p class="comment-texts">
+            <%= comment.text%>
+          </p>
+          <p class="comment-time">
+            <%= comment.created_at.to_s(:datetime_jp) %>
+          </p>
+           <% if user_signed_in? && current_user.id == comment.user_id %>
           <p>
-            <%= link_to '　削除', item_comment_path(@item.id, comment.id), method: :delete, class: "delete-button" %>
+            <%= link_to item_comment_path(@item.id, comment.id), method: :delete, class: "delete-button" do %>
+            <i class="fas fa-trash"></i>
+            <% end %>
           </p>
           <% end %>
           </div>
-          
         <% end %>
+            <% if @item.comments.length !=0 %>
+            <br>
+            <%= link_to '他のコメントを見る', item_comments_path(@item), class: "more-comments"%>
       <% end %>
+      <% end %>
+
     </div>
+
   </div>
 
 
