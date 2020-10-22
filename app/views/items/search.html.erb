@@ -15,11 +15,13 @@
   <%= f.radio_button :price_lteq, '' %>
   指定なし
   <%= f.radio_button :price_lteq, '1000' %>
-  1000円以下
-  <%= f.radio_button :price_lteq, '2500' %>
-  2500円以下
+  ~1000円
+  <%= f.radio_button :price_lteq, '3000' %>
+  ~3000円
   <%= f.radio_button :price_lteq, '5000' %>
-  5000円以下
+  ~5000円
+  <%= f.radio_button :price_lteq, '10000' %>
+  ~10000円
   <br>
   <%= f.submit '検索' %>
   <% end %>
