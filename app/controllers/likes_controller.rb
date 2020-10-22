@@ -1,7 +1,10 @@
 class LikesController < ApplicationController
+    
+
 
     def show
       @likes = current_user.likes.order("created_at DESC")
+
     end
 
     def create
