@@ -158,9 +158,7 @@
               <i class="heart-color">♥</i>
             <% end %>
           <% elsif user_signed_in? && current_user.id == item.user_id%>
-            <%# <%= link_to item_likes_path(item), method: :post do %> 
               <i class="heart-color1">♥</i>
-            <%# <% end %>
           <% else %>
               <%= link_to item_likes_path(item), method: :post do %>
                <i class="heart-color1">♥</i>

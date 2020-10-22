@@ -186,14 +186,37 @@ color: rgba(0, 0, 0, 0.881);
 
 .heart-color {
   color: red;
-  font-size: 2.5vh;
-  margin-left: 12vh;
+  font-size: 2vh;
+  margin-left: 16vh;
 }
 
 .heart-color1 {
   color: rgba(0, 0, 0, 0.333);
-  font-size: 2.5vh;
-  margin-left: 12vh;
+  font-size: 2vh;
+  margin-left: 16vh;
+}
+
+
+.heart-color2 {
+  color: red;
+  font-size: 2vh;
+  margin-left: vh;
+}
+
+.heart-color3 {
+  color: rgba(0, 0, 0, 0.333);
+  font-size: 2vh;
+  margin-left: vh;
+}
+
+.heart-color2 span {
+  color:black;
+  margin-right:2vh;
+}
+
+.heart-color3 span {
+  color:black;
+  margin-right:2vh;
 }
 
 .item-img2 {
