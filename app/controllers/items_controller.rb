@@ -15,13 +15,6 @@ class ItemsController < ApplicationController
         def search
             @items = Item.all.order("created_at DESC")
             set_item_column
-
-            # params[:q] = { price_eq: 1000 }    if params[:price] == 1000
-            # params[:q] = { price_lteq: 2500 }  if params[:price] == 2500
-            # params[:q] = { price_lteq: 5000 }  if params[:price] == 5000
-            # params[:q] = { price_gt: 5000 } if params[:price] == 5000
-            # @search = Item.ransack(params[:q])
-            # @result = @search.result(distinct: true)
         end
 
         def result
