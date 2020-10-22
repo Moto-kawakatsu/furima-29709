@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :orders 
     resources :comments
-    resource :likes, only: [:create, :destroy]
+    resource :likes
 
   end
 
