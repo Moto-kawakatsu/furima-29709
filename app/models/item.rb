@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+    is_impressionable 
     extend ActiveHash::Associations::ActiveRecordExtensions
 
 belongs_to_active_hash :category

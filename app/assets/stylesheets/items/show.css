@@ -17,6 +17,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+
 }
 
 .item-box>.name {
@@ -203,4 +205,15 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 23px;
+}
+
+.impressions {
+  font-size: 2vh;
+  color: rgba(255, 255, 255, 0.744);
+  border: solid 1px rgb(255, 255, 255);
+  background-color: rgba(6, 7, 8, 0.292);
+  padding: 1vh;
+  position: absolute;
+  top:1px;
+  left:1px;
 }

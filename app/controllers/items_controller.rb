@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
         before_action :set_item, only: [:show, :edit, :update, :destroy]
         before_action :search_item, only: [:search, :result]
 
+        impressionist :actions=> [:show]
+
         def index
             @items = Item.all.order("created_at DESC").limit(8)
         end
@@ -10,6 +12,7 @@ class ItemsController < ApplicationController
         def show
            @comment = Comment.new
            @comments = @item.comments.includes(:user).limit(5).order("created_at DESC")
+           impressionist(@item, nil, unique: [:session_hash])
         end
 
         def search
