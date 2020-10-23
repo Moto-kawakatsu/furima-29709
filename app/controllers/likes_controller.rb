@@ -1,10 +1,11 @@
 class LikesController < ApplicationController
     
-
-
     def show
       @likes = current_user.likes.order("created_at DESC")
+    end
 
+    def pop_item
+      @ids = Like.group(:item_id).count(:item_id)
     end
 
     def create

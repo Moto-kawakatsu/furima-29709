@@ -18,3 +18,10 @@
     justify-content:center;
 
 }
+
+.pop-items {
+    font-size:2.8vh;
+    padding: 2vh;
+    display:flex;
+    justify-content:center;
+}
