@@ -11,7 +11,7 @@
   display:flex;
   justify-content: center;
   font-size: 2.5vh;
-  margin-bottom: 5vh;
+  margin: 5vh 0 3vh 0;
 }
 
 .response {
@@ -20,7 +20,7 @@
     font-weight: bold;
     display:flex;
     justify-content: center;
-    margin-bottom: 10vh;
+    margin-bottom: 2vh;
 
 }
 
@@ -222,4 +222,9 @@ color: rgba(0, 0, 0, 0.881);
 .item-img2 {
   width: 27vh;
   height: 27vh;
+}
+
+.response a{
+  color:rgba(0, 119, 255, 0.589);
+  cursor:pointer;
 }
