@@ -5,9 +5,9 @@
  <% else %>
   <div class ="Q">
     <h1 class="q">こちらの商品をお探しでしょうか？</h1>
-    <div class="response">
-      <%= link_to 'YES　', "#"%>
-      <%= link_to '　NO', items_search_path%>
+    <div class="response" id="res">
+      <div id="yes"><%=link_to 'YES',"#"%></div>
+      <div id="no"><%= link_to '　NO', items_search_path%></div>
     </div>
   </div>
    <ul class='item-lists2'>
@@ -54,7 +54,7 @@
 <br>
 <br>
 <br>
-<div class= "move-to-top">
-<%= link_to '検索ページに戻る　', items_search_path %>
-<%= link_to '　トップページに戻る', root_path %>
+<div class= "response">
+<%= link_to '検索ページ　', items_search_path %>
+<%= link_to '　トップページ', root_path %>
 </div>
