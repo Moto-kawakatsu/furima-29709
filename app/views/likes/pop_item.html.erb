@@ -1,35 +1,35 @@
 <h1 class="pop-items">人気商品</h1>
 <div class='item-contents'>
 <ul class='item-lists2'>
- <% @ids.each do |id| %>
- <% if id[1] >= 3 %>
+ <% @items.each do |item| %>
+ <% if item.likes.ids.count >= 1 %>
       <li class='list items'>
       <div class='item-img-content'>
-      <%= link_to item_path(Item.find(id[0]).id) do %>
-           <%= image_tag Item.find(id[0]).image, class:"item-img2" %>
+      <%= link_to root_path do %>
+           <%= image_tag item.image, class:"item-img2" %>
            <% end %>
       </div>
 
       <div class='item-info'>
          <h3 class='item-name'>
-           <%= Item.find(id[0]).name %>
+           <%= item.name %>
          </h3>
 
          <div class="item-price">
-            <span><%= Item.find(id[0]).price %>円<br>(税込み)</span>
+            <span><%= item.price %>円<br>(税込み)</span>
             <div class='heart-btn'>
-            <% if user_signed_in? && current_user.already_liked?(Item.find(id[0])) %>
-              <%= link_to item_likes_path(Item.find(id[0])), method: :delete do %>
+            <% if user_signed_in? && current_user.already_liked?(item) %>
+              <%= link_to item_likes_path(Item), method: :delete do %>
               <i class="heart-color">♥</i>
               <% end %>
-            <% elsif user_signed_in? && current_user.id == Item.find(id[0]).user_id%>
+            <% elsif user_signed_in? && current_user.id == item.user_id%>
               <i class="heart-color1">♥</i>
             <% else %>
-              <%= link_to item_likes_path(Item.find(id[0])), method: :post do %>
+              <%= link_to item_likes_path(item), method: :post do %>
               <i class="heart-color1">♥</i>
               <% end %>
             <% end %>
-            <%= Item.find(id[0]).likes.count %>
+            <%= item.likes.count %>
          </div>
       </div>
         <%end%>

@@ -12,6 +12,7 @@ has_many :likes, dependent: :destroy
 has_one :order
 has_many :comments
 has_one_attached :image
+has_many :liked_users, through: :likes, source: :user
 
 
   with_options presence: true do

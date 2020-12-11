@@ -6,6 +6,7 @@ class LikesController < ApplicationController
 
     def pop_item
       @ids = Like.group(:item_id).count(:item_id)
+      @items = Item.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
     end
 
     def create
